@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Trip Splitter - Split Trip Expenses Without Awkward Conversations</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            color: #1a1a1a;
+            line-height: 1.6;
+            background: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: #ffffff;
+            padding: 20px 0;
+            border-bottom: 1px solid #f0f0f0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        nav {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        nav a {
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #1a1a1a;
+        }
+
+        .cta-button {
+            background: #1e3a8a;
+            color: white;
+            padding: 10px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: background 0.3s;
+        }
+
+        .cta-button:hover {
+            background: #1e3a8a;
+            opacity: 0.9;
+        }
+
+        .secondary-button {
+            background: transparent;
+            color: #1e3a8a;
+            padding: 10px 24px;
+            border: 1px solid #1e3a8a;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .secondary-button:hover {
+            background: #f5f5f5;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #f0f4ff;
+            color: #4f46e5;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            width: fit-content;
+            font-weight: 500;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.2;
+            color: #1a1a1a;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #86efac 0%, #fbbf24 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .stat-icon {
+            width: 40px;
+            height: 40px;
+            background: #fbbf24;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .stat-text {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .stat-number {
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: #999;
+        }
+
+        /* Features Section */
+        .pain-points {
+            padding: 80px 0;
+            background: #fafafa;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #1a1a1a;
+        }
+
+        .section-title .highlight {
+            color: #4f46e5;
+        }
+
+        .section-title p {
+            font-size: 18px;
+            color: #666;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #f0f0f0;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: #ddd;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .feature-card-icon {
+            width: 60px;
+            height: 60px;
+            background: #f0f4ff;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 28px;
+        }
+
+        .feature-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #1a1a1a;
+        }
+
+        .feature-card p {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 80px 0;
+        }
+
+        .benefits-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .benefit-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 20px;
+        }
+
+        .benefit-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 36px;
+        }
+
+        .benefit-item:nth-child(2) .benefit-icon {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+
+        .benefit-item:nth-child(3) .benefit-icon {
+            background: linear-gradient(135deg, #0d9488 0%, #059669 100%);
+        }
+
+        .benefit-item h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .benefit-item p {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Features Grid */
+        .powerful-features {
+            padding: 80px 0;
+            background: #fafafa;
+        }
+
+        .features-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-box {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #f0f0f0;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .feature-box-icon {
+            width: 50px;
+            height: 50px;
+            background: #f0f4ff;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4f46e5;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .feature-box-content h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1a1a1a;
+        }
+
+        .feature-box-content p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Categories */
+        .categories {
+            padding: 80px 0;
+        }
+
+        .category-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .category-title h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .category-icons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .category-icon {
+            width: 60px;
+            height: 60px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+
+        .category-more {
+            text-align: center;
+        }
+
+        .category-more button {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 24px;
+            transition: all 0.3s;
+        }
+
+        .category-more button:hover {
+            border-color: #4f46e5;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background: #fafafa;
+        }
+
+        .testimonials-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #f0f0f0;
+        }
+
+        .testimonial-quote {
+            font-size: 15px;
+            color: #666;
+            margin-bottom: 20px;
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .author-info h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .author-info p {
+            font-size: 12px;
+            color: #999;
+        }
+
+        /* FAQ */
+        .faq {
+            padding: 80px 0;
+        }
+
+        .faq-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #f0f0f0;
+            padding: 20px 0;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+            padding: 10px 0;
+        }
+
+        .faq-question h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .faq-toggle {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4f46e5;
+            font-size: 18px;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 20px 0 0 0;
+            color: #666;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button-primary {
+            background: #f59e0b;
+            color: white;
+            padding: 14px 32px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+        }
+
+        .cta-button-primary:hover {
+            background: #d97706;
+        }
+
+        .cta-button-secondary {
+            background: transparent;
+            color: white;
+            padding: 14px 32px;
+            border: 2px solid white;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .cta-button-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #999;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Form Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #1a1a1a;
+            font-size: 14px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #4f46e5;
+        }
+
+        .form-submit {
+            width: 100%;
+            background: #1e3a8a;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .form-submit:hover {
+            opacity: 0.9;
+        }
+
+        .form-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .form-message {
+            text-align: center;
+            padding: 16px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .form-message.success {
+            background: #ecfdf5;
+            color: #065f46;
+            display: block;
+        }
+
+        .form-message.error {
+            background: #fef2f2;
+            color: #991b1b;
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 60px 0;
+                gap: 40px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            nav.mobile-nav {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .section-title h2 {
+                font-size: 28px;
+            }
+
+            .cta-section h2 {
+                font-size: 32px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .hero-buttons button,
+            .hero-buttons a {
+                width: 100%;
+                text-align: center;
+            }
+
+            .pain-points,
+            .powerful-features {
+                padding: 60px 0;
+            }
+
+            .benefits,
+            .categories,
+            .faq,
+            .cta-section {
+                padding: 60px 0;
+            }
+
+            .modal-content {
+                width: 95%;
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 24px;
+            }
+
+            .section-title h2 {
+                font-size: 22px;
+            }
+
+            .cta-section h2 {
+                font-size: 24px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .cta-buttons button {
+                width: 100%;
+            }
+
+            .feature-card {
+                padding: 20px;
+            }
+
+            .category-icons {
+                gap: 12px;
+            }
+
+            .category-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 22px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">Family Trip Splitter</div>
+            <nav>
+                <a href="#features">Features</a>
+                <a href="#how">Why It Works</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#faq">FAQ</a>
+            </nav>
+            <button class="cta-button" onclick="openForm()">Start Your Free Trip</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; width: 100%; max-width: 1200px; padding: 80px 20px 0;">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span>✨</span>
+                    On the stress, the joy, the memorable experience together
+                </div>
+                <h1>Split Trip Expenses Without the Awkward Conversations</h1>
+                <p>Track every travel expense, split bills fairly, and settle balances instantly—no more family drama, missed notes, or awkward reminders.</p>
+                <div class="hero-buttons">
+                    <button class="cta-button" onclick="openForm()">Start Your Free Trip</button>
+                    <button class="secondary-button" onclick="document.getElementById('how').scrollIntoView({behavior: 'smooth'})">See How It Works</button>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-text">
+                            <div class="stat-number">10K+</div>
+                            <div class="stat-label">Families Using</div>
+                        </div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-icon">💰</div>
+                        <div class="stat-text">
+                            <div class="stat-number">$2M+</div>
+                            <div class="stat-label">Settled Fairly</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                🏔️ Family enjoying mountain view - Beautiful travel moments without expense stress
+            </div>
+        </div>
+    </section>
+
+    <!-- Pain Points Section -->
+    <section class="pain-points" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Family Trips Create Memories. <span class="highlight">Expense Tracking Creates Headaches.</span></h2>
+                <p>Don't let the end of a great day be ruined by complex math and unsolved money conversations.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-card-icon">😰</div>
+                    <h3>Who should pay what?</h3>
+                    <p>Splitting expenses among multiple people gets confusing fast. Who paid for gas? Who covered dinner?</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-icon">📝</div>
+                    <h3>Lost in translation</h3>
+                    <p>Keeping track of handwritten notes and scattered payments across different people is unreliable.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-icon">🧮</div>
+                    <h3>Can someone do the math?</h3>
+                    <p>Everyone's calculator gives different results. Complex calculations lead to disagreements and frustration.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-icon">💸</div>
+                    <h3>No one loves you now</h3>
+                    <p>Friends and family avoid trips because settling up afterward creates tension and awkwardness.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits" id="how">
+        <div class="container">
+            <div class="benefits-title">
+                <h2>Spend more time exploring, less time calculating.</h2>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">🗺️</div>
+                    <h3>Create Your Trip</h3>
+                    <p>Start your adventure and invite friends and family in seconds. Set a name, date, and who's coming.</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">💳</div>
+                    <h3>Add Expenses As You Go</h3>
+                    <p>Snap a photo of the receipt or type it in. Assign it to whoever paid or split it among the group.</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">✅</div>
+                    <h3>Settle Instantly</h3>
+                    <p>Stop calculating who owes whom. Our app does the math and shows exactly who should pay whom.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Powerful Features -->
+    <section class="powerful-features">
+        <div class="container">
+            <div class="features-title">
+                <h2>Powerful Features for Serious Travelers</h2>
+                <p>Designed to handle everything from a weekend road trip to a month-long international tour.</p>
+            </div>
+            <div class="features-list">
+                <div class="feature-box">
+                    <div class="feature-box-icon">📱</div>
+                    <div class="feature-box-content">
+                        <h3>SPLIT_SCREEN</h3>
+                        <p>Seamless interface designed for quick expense entry even on the move with one hand.</p>
+                    </div>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-box-icon">🔄</div>
+                    <div class="feature-box-content">
+                        <h3>Real-time calculation</h3>
+                        <p>Every expense is instantly calculated and balanced across all participants in your trip.</p>
+                    </div>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-box-icon">🌍</div>
+                    <div class="feature-box-content">
+                        <h3>Multi-currency support</h3>
+                        <p>Travel internationally and let us handle currency conversion automatically in real-time.</p>
+                    </div>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-box-icon">📸</div>
+                    <div class="feature-box-content">
+                        <h3>Receipt scanning</h3>
+                        <p>Upload receipt photos and our AI extracts amounts and details automatically for you.</p>
+                    </div>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-box-icon">👥</div>
+                    <div class="feature-box-content">
+                        <h3>Group management</h3>
+                        <p>Easily add, remove, or update group members. Perfect for trips where people join or leave.</p>
+                    </div>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-box-icon">📊</div>
+                    <div class="feature-box-content">
+                        <h3>Expense analytics</h3>
+                        <p>See detailed breakdowns of spending by category and person. Understand your trip budget.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories">
+        <div class="container">
+            <div class="category-title">
+                <h2>Categorize Every Moment</h2>
+            </div>
+            <div style="display: flex; justify-content: center; flex-direction: column; align-items: center; gap: 40px;">
+                <div class="category-icons">
+                    <div class="category-icon">🍽️</div>
+                    <div class="category-icon">🏨</div>
+                    <div class="category-icon">🚗</div>
+                    <div class="category-icon">🎭</div>
+                    <div class="category-icon">🏪</div>
+                    <div class="category-icon">🎫</div>
+                    <div class="category-icon">📸</div>
+                    <div class="category-icon">🧳</div>
+                    <div class="category-icon">🎨</div>
+                </div>
+                <div class="category-more">
+                    <button>...</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="testimonials-title">
+                <h2>Loved by Families Worldwide</h2>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <div class="testimonial-quote">
+                        "Finally, a trip to Europe where I didn't have to keep a spreadsheet. If more friends used this, my holiday would have been 10x more relaxed!"
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SK</div>
+                        <div class="author-info">
+                            <h4>Sarah K.</h4>
+                            <p>Family trip to Paris</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-quote">
+                        "The real-time tracking is a game changer. We always completely money and never owed anybody anything at the end of the trip!"
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JM</div>
+                        <div class="author-info">
+                            <h4>James M.</h4>
+                            <p>Road trip across country</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-quote">
+                        "Setting up at the end and all of the family said 'everyone all the time's great! Every time us use it, everyone's glad engaged!'"
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">FK</div>
+                        <div class="author-info">
+                            <h4>Frank K.</h4>
+                            <p>Family vacation guide</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+        <div class="container">
+            <div class="faq-title">
+                <h2>Frequently Asked Questions</h2>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>Is it really too fun for our first trip?</h3>
+                        <div class="faq-toggle">▼</div>
+                    </div>
+                    <div class="faq-answer">
+                        Absolutely! Family Trip Splitter is designed to be intuitive and fun. It takes less than a minute to set up your first trip and start adding expenses.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>Can we use it when traveling different currencies?</h3>
+                        <div class="faq-toggle">▼</div>
+                    </div>
+                    <div class="faq-answer">
+                        Yes! Our app supports multiple currencies and automatically converts everything to a base currency for easy settlement.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>Do all family members need the app?</h3>
+                        <div class="faq-toggle">▼</div>
+                    </div>
+                    <div class="faq-answer">
+                        One person can manage the trip and add expenses for everyone. Others can download the app to see their portion anytime.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>Is my financial secure?</h3>
+                        <div class="faq-toggle">▼</div>
+                    </div>
+                    <div class="faq-answer">
+                        Your data is encrypted and secure. We never store payment information. We only track expenses and calculate balances.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>How do I invite family members?</h3>
+                        <div class="faq-toggle">▼</div>
+                    </div>
+                    <div class="faq-answer">
+                        Simply share the trip code with your family. They can join by entering the code in their app.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>Can I edit an expense after it's made?</h3>
+                        <div class="faq-toggle">▼</div>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, you can edit or delete expenses anytime. All calculations update instantly.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>What if a transaction hasn't transferred?</h3>
+                        <div class="faq-toggle">▼</div>
+                    </div>
+                    <div class="faq-answer">
+                        Our app calculates who owes whom. You can settle up through any payment method - Venmo, PayPal, or cash.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready for a Stress-Free Family Trip?</h2>
+            <p>Join thousands of families who focus on the memories, not the math.</p>
+            <div class="cta-buttons">
+                <button class="cta-button-primary" onclick="openForm()">Start Your Free Trip Now</button>
+                <button class="cta-button-secondary">Contact Support</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <h3>Family Trip Splitter</h3>
+                    <p style="color: #999; font-size: 14px; line-height: 1.6;">Making family trips stress-free by simplifying expense management and fair splitting.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Product</h3>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#download">Download</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Help</h3>
+                    <ul>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Family Trip Splitter. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Form Modal -->
+    <div class="modal" id="formModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeForm()">✕</button>
+            <h2 style="margin-bottom: 30px; text-align: center;">Start Your Free Trip</h2>
+            <div class="form-message" id="formMessage"></div>
+            <form id="tripForm" onsubmit="submitForm(event)">
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" placeholder="Your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000" required>
+                </div>
+                <button type="submit" class="form-submit" id="submitBtn">Start Your Free Trip</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbytQ1Eh52A8tNsHOXrskanJE5WBbg0pE0Hx6y0L8VYFw1aALDfNR2uTHBbhkZVFSiHRkw/exec';
+
+        function openForm() {
+            document.getElementById('formModal').classList.add('active');
+        }
+
+        function closeForm() {
+            document.getElementById('formModal').classList.remove('active');
+            document.getElementById('tripForm').reset();
+            document.getElementById('formMessage').className = 'form-message';
+        }
+
+        function toggleFaq(element) {
+            element.closest('.faq-item').classList.toggle('active');
+        }
+
+        function showMessage(message, type) {
+            const msgElement = document.getElementById('formMessage');
+            msgElement.textContent = message;
+            msgElement.className = 'form-message ' + type;
+        }
+
+        function submitForm(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+
+            if (!name || !email || !phone) {
+                showMessage('Please fill in all fields', 'error');
+                return;
+            }
+
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+
+            const url = SCRIPT_URL + '?' + new URLSearchParams({ name, email, phone });
+
+            fetch(url, { method: 'GET', mode: 'no-cors' })
+                .then(() => {
+                    showMessage('Success! Your free trip is ready. Check your email for next steps.', 'success');
+                    setTimeout(() => {
+                        closeForm();
+                    }, 2000);
+                })
+                .catch(() => {
+                    showMessage('There was an error. Please try again.', 'error');
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Start Your Free Trip';
+                });
+        }
+
+        document.getElementById('formModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeForm();
+            }
+        });
+    </script>
+</body>
+</html>
